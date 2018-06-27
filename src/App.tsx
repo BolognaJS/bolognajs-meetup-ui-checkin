@@ -1,14 +1,8 @@
 import * as React from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 
-import AttendeeCard from 'src/components/AttendeeCard';
-
-type Attendee = {
-  id: number,
-  name: string,
-  photo: string,
-  checkin: boolean
-}
+import Attendee from 'src/models/Attendee';
+import StyledAttendeesPanel from 'src/components/AttendeesPanel';
 
 interface IAppProps {}
 interface IAppState {
@@ -29,17 +23,7 @@ class App extends React.Component<IAppProps, IAppState> {
   public render() {
     return (
       <div className="App">
-        <div className="attendees">
-            {
-              this.state.attendees.map( attendee =>
-                <AttendeeCard 
-                  key={attendee.id} 
-                  name={attendee.name} 
-                  avatar={attendee.photo} 
-                  checkedIn={attendee.checkin} />
-              )
-            }
-        </div>
+        <StyledAttendeesPanel members={this.state.attendees} />
       </div>
     );
   }
@@ -56,9 +40,6 @@ class App extends React.Component<IAppProps, IAppState> {
               attendees: response.data
             })
           }
-
-          // tslint:disable-next-line:no-console
-          console.log(response);
         })
     return;
   }

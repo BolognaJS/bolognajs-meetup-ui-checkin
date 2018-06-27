@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { Component } from 'react'
+import styled from 'styled-components';
 
 import Avatar from 'src/components/Avatar';
 import Name from 'src/components/Name';
-
-import styled from 'styled-components';
-import RippleEffect from './RippleEffect';
+import RippleEffect from 'src/components/RippleEffect';
 
 interface IProps {
     name: string,
