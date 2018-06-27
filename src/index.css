@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+
+.btn-rounded {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
