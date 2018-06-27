@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'src/theme';
+import styled from 'styled-components';
 
 interface IProps {
     url: string,
