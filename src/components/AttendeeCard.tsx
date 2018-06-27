@@ -5,6 +5,7 @@ import Avatar from 'src/components/Avatar';
 import Name from 'src/components/Name';
 
 import styled from 'styled-components';
+import RippleEffect from './RippleEffect';
 
 interface IProps {
     name: string,
@@ -23,15 +24,12 @@ class AttendeeCard extends Component<IProps> {
             <div className={`attendee ${this.props.checkedIn ? 'checked_in' : ''} ${this.props.className}`} onClick={this.onClick}>
                 <Avatar url={this.props.avatar} />
                 <Name>{this.props.name}</Name>
-                <button className="rippleContainer">
-                    <div className="ripple" />                
-                </button>
+                <RippleEffect />
             </div>
         )
     }
 
     private onClick = () =>  {
-
         return;
     }
 }
