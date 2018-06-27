@@ -4,24 +4,44 @@ body {
   font-family: sans-serif;
 }
 
-
 .btn-rounded {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
-
+.attendees {
+  display: flex;
+  flex-wrap: wrap;
+}
 .attendee {
+  padding: 5px;
   position: relative;
-  border: 1px solid fuchsia;
+  border: 1px solid #ccc;
+  display: flex;  
+  width: 250px;
+  margin: 0 10px 10px 0;
 }
 .attendee .avatar {
-  border: 1px solid red;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.attendee .avatar img {
   width: 100%;
+}
+.attendee .info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+.attendee .name {
+  font-size: 14px;
 }
 .attendee .actions {
   position: absolute;
   bottom: 0;
-  border: 1px solid lime;
   width: 100%;
 }

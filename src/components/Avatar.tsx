@@ -1,11 +1,15 @@
-import * as React from 'react'
+import * as React from 'react';
 
 interface IProps {
     url: string
 }
 
+//  style={{backgroundImage: url}}
+
 const Avatar = ({url}: IProps) => (
-    <img src={url} className="avatar" />
+    <div className="avatar">
+        <img src={url} />
+    </div>
 )
 
 export default Avatar
