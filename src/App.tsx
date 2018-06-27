@@ -2,7 +2,6 @@ import * as React from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 
 import AttendeeCard from 'src/components/AttendeeCard';
-import RoundButton, { ButtonType } from './components/RoundButton';
 
 type Attendee = {
   id: number,
@@ -30,8 +29,6 @@ class App extends React.Component<IAppProps, IAppState> {
   public render() {
     return (
       <div className="App">
-      <RoundButton onClick={this.loadAttendees} text="X" type={ButtonType.Danger} />
-      <RoundButton onClick={this.loadAttendees} text="Y" type={ButtonType.Success} />
         <div className="attendees">
             {
               this.state.attendees.map( attendee =>
