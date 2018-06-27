@@ -1,30 +1,23 @@
 import * as React from 'react';
 
+import Attendee from 'src/components/Attendee';
+
 import './App.css';
 
-import RoundButton, { ButtonType } from './components/RoundButton';
 
 class App extends React.Component {
-  constructor() {
-    super({});
-
-    this.onClick = this.onClick.bind(this);
-  }
 
   public render() {
     return (
       <div className="App">
-
-        <RoundButton text="&#x2713;" onClick={this.onClick} type={ButtonType.Success} />
-        <RoundButton text="X" onClick={this.onClick} type={ButtonType.Danger} />
+        <div className="row">
+          <div className="col-sm-12 col-md-4 col-lg-3 col-xl-2">
+            <Attendee name="pippo" avatar="https://secure.meetupstatic.com/photos/member/c/c/7/4/highres_269272340.jpeg" />
+          </div>
+        </div>
       </div>
     );
   }
-
-  private onClick() {
-    return;
-  }
-
 }
 
 export default App;

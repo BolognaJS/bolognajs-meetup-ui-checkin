@@ -10,3 +10,18 @@ body {
   height: 40px;
   border-radius: 20px;
 }
+
+.attendee {
+  position: relative;
+  border: 1px solid fuchsia;
+}
+.attendee .avatar {
+  border: 1px solid red;
+  width: 100%;
+}
+.attendee .actions {
+  position: absolute;
+  bottom: 0;
+  border: 1px solid lime;
+  width: 100%;
+}
