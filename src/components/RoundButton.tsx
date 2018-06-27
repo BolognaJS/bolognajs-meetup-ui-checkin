@@ -12,9 +12,12 @@ interface IProps {
 }
 
 const RoundButton = ({text, type, onClick}: IProps) => (
-  <button className={`btn btn-rounded ${type}`} onClick={onClick}> 
+  <button className={`btn-rounded ${type}`} onClick={onClick}> 
       {text}
   </button>
 )
 
 export default RoundButton
+
+
+// const RoundButton = styled.button

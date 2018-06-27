@@ -1,15 +1,28 @@
 import * as React from 'react';
+import styled from 'src/theme';
 
 interface IProps {
     url: string
 }
 
-//  style={{backgroundImage: url}}
+const Img = ({url}: IProps) => <img src={url || 'http://www.bolognajs.com/img/logo.svg'} />
+
+const AvatarImg = styled(Img)`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`
 
 const Avatar = ({url}: IProps) => (
     <div className="avatar">
-        <img src={url} />
+        <AvatarImg url={url} />
     </div>
 )
 
-export default Avatar
+const StyledAvatar = styled(Avatar)`
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+`
+
+export default StyledAvatar

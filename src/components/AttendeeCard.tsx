@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { Component } from 'react'
+
 import Avatar from 'src/components/Avatar';
-import RoundButton, { ButtonType } from 'src/components/RoundButton';
 import Name from 'src/components/Name';
+
+import styled from 'src/theme';
 
 interface IProps {
     name: string,
@@ -17,21 +19,27 @@ class AttendeeCard extends Component<IProps> {
     
     public render() {
         return (
-            <div className="attendee">
+            <div className="attendee" onClick={this.onClick}>
                 <Avatar url={this.props.avatar} />
-                <div className="info">
-                    <Name>{this.props.name}</Name>
-                    <RoundButton text="&#x2713;" onClick={this.checkIn} type={ButtonType.Success} />
-                </div>
+                <Name>{this.props.name}</Name>
             </div>
         )
     }
 
-    private checkIn = () =>  {
-        
+    private onClick = () =>  {
 
         return;
     }
 }
 
-export default AttendeeCard
+const StyledAttendeeCard = styled(AttendeeCard)`
+    padding: 5px;
+    position: relative;
+    border: 1px solid #ccc;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px 10px 0;
+`
+
+export default StyledAttendeeCard

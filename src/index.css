@@ -8,40 +8,58 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 25px;
+  border: 1px solid transparent;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;  
+}
+.btn-outline-success {
+  color: #28a745;
+  background-color: transparent;
+  background-image: none;
+  border-color: #28a745;
+}
+.btn-outline-danger {
+  color: #dc3545;
+  background-color: transparent;
+  background-image: none;
+  border-color: #dc3545;
 }
 .attendees {
   display: flex;
   flex-wrap: wrap;
 }
 .attendee {
-  padding: 5px;
+  padding: 5px 5px 0;
   position: relative;
   border: 1px solid #ccc;
   display: flex;  
-  width: 250px;
+  flex-direction: column;
+  align-items: center;
   margin: 0 10px 10px 0;
+  cursor: pointer;
 }
 .attendee .avatar {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   overflow: hidden;
 }
 .attendee .avatar img {
   width: 100%;
-}
-.attendee .info {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-left: 10px;
-}
-.attendee .name {
-  font-size: 14px;
-}
-.attendee .actions {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

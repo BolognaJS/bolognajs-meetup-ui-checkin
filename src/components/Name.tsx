@@ -1,15 +1,10 @@
-import * as React from 'react'
+import styled from 'styled-components';
 
-interface IProps {
-    children?: string
-}
-
-// const Name = styled.span`
-//     font-size: 14px;
-// `
-
-const Name = ({children}: IProps) => (
-    <span className="name">{children}</span>
-)
+const Name = styled.div`
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+`
 
 export default Name

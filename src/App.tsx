@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 
 import AttendeeCard from 'src/components/AttendeeCard';
+import RoundButton, { ButtonType } from './components/RoundButton';
 
 type Attendee = {
   id: number,
@@ -29,6 +30,8 @@ class App extends React.Component<IAppProps, IAppState> {
   public render() {
     return (
       <div className="App">
+      <RoundButton onClick={this.loadAttendees} text="X" type={ButtonType.Danger} />
+      <RoundButton onClick={this.loadAttendees} text="Y" type={ButtonType.Success} />
         <div className="attendees">
             {
               this.state.attendees.map( attendee =>
@@ -49,7 +52,7 @@ class App extends React.Component<IAppProps, IAppState> {
       headers: {'Access-Control-Allow-Origin': '*'}
     };
 
-    axios.get('https://bolognajs-meetup.now.sh/attendee/247514260', config)
+    axios.get('https://bolognajs-meetup.now.sh/attendee/251881606', config)
         .then((response) => {
           if(response.status === 200) {
             this.setState({
