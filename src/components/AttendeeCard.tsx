@@ -6,15 +6,13 @@ import Name from 'src/components/Name';
 
 interface IProps {
     name: string,
+    checkedIn: boolean
     avatar: string
 }
 
 class AttendeeCard extends Component<IProps> {
     constructor(props: IProps) {
         super(props);
-    
-        this.checkIn = this.checkIn.bind(this);
-        this.notPresent = this.notPresent.bind(this);
     }
     
     public render() {
@@ -22,18 +20,16 @@ class AttendeeCard extends Component<IProps> {
             <div className="attendee">
                 <Avatar url={this.props.avatar} />
                 <div className="info">
-                    <Name value={this.props.name} />
+                    <Name>{this.props.name}</Name>
                     <RoundButton text="&#x2713;" onClick={this.checkIn} type={ButtonType.Success} />
                 </div>
             </div>
         )
     }
 
-    private checkIn() {
-        return;
-    }
-    
-    private notPresent() {
+    private checkIn = () =>  {
+        
+
         return;
     }
 }

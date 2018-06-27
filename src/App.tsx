@@ -32,7 +32,11 @@ class App extends React.Component<IAppProps, IAppState> {
         <div className="attendees">
             {
               this.state.attendees.map( attendee =>
-                <AttendeeCard key={attendee.id} name={attendee.name} avatar={attendee.photo} />
+                <AttendeeCard 
+                  key={attendee.id} 
+                  name={attendee.name} 
+                  avatar={attendee.photo} 
+                  checkedIn={attendee.checkin} />
               )
             }
         </div>
