@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+export enum RippleColor {
+    Green,
+    Red,
+    White
+}
+
+interface IRippleEffectProps {
+    rippleColor?: RippleColor
+}
 
 const RippleEffect = styled.button`
     width: 100%;
@@ -29,20 +39,32 @@ const RippleEffect = styled.button`
         left: 50%;
         width: 10px;
         height: 10px;
-        background: rgba(40, 167, 69, .6);
         opacity: 0;
         border-radius: 100%;
         transform: scale(1, 1) translate(-50%);
         transform-origin: 50% 50%;
+
+        ${
+            ({rippleColor}: IRippleEffectProps) => {
+                switch(rippleColor) {
+                    case RippleColor.Green:
+                        return css`background: rgba(40, 167, 69, .6);`
+                    
+                    case RippleColor.Red:
+                        return css`background: rgba(220, 53, 69, .6);`
+
+                    case RippleColor.White:
+                    default:
+                        return css`background: rgba(255, 255, 255, .6);`
+                }
+            }
+        }
     }
 
-    .checked_in &:after {
-        background: rgba(220, 53, 69, .6);
-    }
-    
     &:focus:not(:active)::after  {
         animation: ripple .7s linear;
     }    
+
 `
 
 export default RippleEffect
