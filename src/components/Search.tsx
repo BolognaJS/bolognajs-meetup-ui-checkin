@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const SearchInput = styled.input`
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 0 5px 20px;
 `
 
 interface IProps {

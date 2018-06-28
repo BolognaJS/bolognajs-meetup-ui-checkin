@@ -18,12 +18,13 @@ const AttendeeCardContainer = styled.div`
     display: flex;  
     flex-direction: column;
     align-items: center;
-    margin: 0 10px 10px 0;
+    margin: 0 5px 10px;
     overflow: hidden;
 
     ${ 
         (props: IContainerProps) => props.checkedIn && css`
-            border: 1px solid rgb(40, 167, 69)
+            border: 1px solid rgb(40, 167, 69);
+            box-shadow: inset 2px 2px 0 rgb(40,167,69), inset -2px -2px 0 rgb(40,167,69);
         `
     }
 `
