@@ -29,7 +29,7 @@ class Events extends Component<IProps, IState> {
     public render() {
         return(
             <AppContainer>
-                <Search onChange={this.onFilter} threshold={2} />
+                <Search onChange={this.onFilter} threshold={2} placeholder="Search events by name..." />
 
                 {
                     this.state

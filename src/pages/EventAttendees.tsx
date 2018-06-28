@@ -37,7 +37,7 @@ class EventAttendees extends Component<IProps, IState> {
     public render() {
         return (
             <AppContainer>
-                <Search onChange={this.onFilter} threshold={2} />
+                <Search onChange={this.onFilter} threshold={2} placeholder="Search event attendee by name..." />
                 <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeesFilter} />
             </AppContainer>
         )
