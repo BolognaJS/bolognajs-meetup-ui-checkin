@@ -2,21 +2,22 @@ import * as React from 'react'
 import styled from "styled-components"
 
 import Attendee from "src/models/Attendee"
-import AttendeeCard from 'src/components/AttendeeCard';
+import AttendeeCard from 'src/components/AttendeeCard'
 
 interface IProps {
     members: Attendee[],
-    className?: string
+    filter: string | null,
+    className?: string,
+    onCardClick: (attendee: Attendee) => void
 }
 
-const AttendeesPanel = ({members, className}: IProps) => (
+const AttendeesPanel = ({members, filter, className, onCardClick}: IProps) => (
     <div className={`attendees ${className}`}>
-            {members.map( attendee =>
+            {members.filter( m => !filter || m.name.match(new RegExp(`${filter}`, 'i'))).map( attendee =>
                 <AttendeeCard 
-                  key={attendee.id} 
-                  name={attendee.name} 
-                  avatar={attendee.photo} 
-                  checkedIn={attendee.checkin} />
+                  key={attendee.id}
+                  data={attendee} 
+                  onClick={onCardClick} />
             )}
     </div>
 )

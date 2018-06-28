@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { Component } from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import Avatar from 'src/components/Avatar';
-import Name from 'src/components/Name';
-import RippleEffect from 'src/components/RippleEffect';
+import Avatar from 'src/components/Avatar'
+import Name from 'src/components/Name'
+import RippleEffect from 'src/components/RippleEffect'
+import Attendee from '../models/Attendee'
 
 interface IProps {
-    name: string,
-    checkedIn: boolean,
-    avatar: string,
-    className?: string
+    data: Attendee,
+    className?: string,
+    onClick: (attendee: Attendee) => void
 }
 
 class AttendeeCard extends Component<IProps> {
@@ -19,17 +19,19 @@ class AttendeeCard extends Component<IProps> {
     }
     
     public render() {
+        const {name, photo, checkin} = this.props.data;
+
         return (
-            <div className={`attendee ${this.props.checkedIn ? 'checked_in' : ''} ${this.props.className}`} onClick={this.onClick}>
-                <Avatar url={this.props.avatar} />
-                <Name>{this.props.name}</Name>
+            <div className={`attendee ${checkin ? 'checked_in' : ''} ${this.props.className}`} onClick={this.onClick}>
+                <Avatar url={photo} />
+                <Name>{name}</Name>
                 <RippleEffect />
             </div>
         )
     }
 
-    private onClick = () =>  {
-        return;
+    private onClick = () => {
+        setTimeout( () => this.props.onClick(this.props.data), 800 )        
     }
 }
 

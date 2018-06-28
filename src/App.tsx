@@ -1,12 +1,14 @@
-import * as React from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import * as React from 'react'
+import axios, { AxiosRequestConfig } from 'axios'
 
-import Attendee from 'src/models/Attendee';
-import StyledAttendeesPanel from 'src/components/AttendeesPanel';
+import Attendee from 'src/models/Attendee'
+import AttendeesPanel from 'src/components/AttendeesPanel'
+import Search from 'src/components/Search'
 
 interface IAppProps {}
 interface IAppState {
-  attendees: Attendee[]
+  attendees: Attendee[],
+  attendeeFilter: string | null
 }
 
 class App extends React.Component<IAppProps, IAppState> {
@@ -14,7 +16,8 @@ class App extends React.Component<IAppProps, IAppState> {
     super(props);
 
     this.state = {
-      attendees: []
+      attendees: [],
+      attendeeFilter: null
     }
 
     this.loadAttendees();
@@ -22,8 +25,9 @@ class App extends React.Component<IAppProps, IAppState> {
 
   public render() {
     return (
-      <div className="App">
-        <StyledAttendeesPanel members={this.state.attendees} />
+      <div className="app">
+        <Search onChange={this.onFilter} threshold={2} />
+        <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeeFilter} />
       </div>
     );
   }
@@ -44,6 +48,28 @@ class App extends React.Component<IAppProps, IAppState> {
     return;
   }
 
+  private onFilter = (attendeeFilter: string | null) => {
+    this.setState({attendeeFilter})
+  }
+
+  private onCardClick = (attendee: Attendee) => {
+    this.setState( (state: IAppState) => {
+      const attendees = state.attendees
+                             .filter( a => a.id !== attendee.id )
+                             .concat( ({...attendee, checkin: !attendee.checkin}) )
+                             .sort( this.compareAttendees )
+
+      return {...state, attendees}
+      }
+      
+    )
+  }
+
+  private compareAttendees(a: Attendee, b: Attendee): number {
+    if(a.name.toLowerCase() > b.name.toLowerCase()) { return 1 }
+    if(a.name.toLowerCase() < b.name.toLowerCase()) { return -1 }
+    return 0
+  }
 }
 
 export default App;
