@@ -2,13 +2,18 @@ import * as React from 'react'
 import axios, { AxiosRequestConfig } from 'axios'
 
 import Attendee from 'src/models/Attendee'
+import MeetupEvent from 'src/models/MeetupEvent'
+
 import AttendeesPanel from 'src/components/AttendeesPanel'
+import EventCard from 'src/components/EventCard'
 import Search from 'src/components/Search'
 
 interface IAppProps {}
 interface IAppState {
   attendees: Attendee[],
-  attendeeFilter: string | null
+  attendeesFilter: string | null
+  events: MeetupEvent[],
+  eventsFilter: string | null
 }
 
 class App extends React.Component<IAppProps, IAppState> {
@@ -17,19 +22,49 @@ class App extends React.Component<IAppProps, IAppState> {
 
     this.state = {
       attendees: [],
-      attendeeFilter: null
+      attendeesFilter: null,
+      events: [],
+      eventsFilter: null
     }
 
+    this.loadEvents();
     this.loadAttendees();
   }
 
   public render() {
     return (
       <div className="app">
-        <Search onChange={this.onFilter} threshold={2} />
-        <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeeFilter} />
+        <div className="events_page">
+          <Search onChange={this.onFilter} threshold={2} />
+
+          {
+            this.state.events.map( event =>
+              <EventCard key={event.id} event={event} />
+            )
+          }
+
+        </div>
+        <div className="event_attendees_page">
+          <Search onChange={this.onFilter} threshold={2} />
+          <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeesFilter} />
+        </div>
       </div>
     );
+  }
+
+  private loadEvents() {
+    const config: AxiosRequestConfig = {
+      headers: {'Access-Control-Allow-Origin': '*'}
+    };
+
+    axios.get('https://bolognajs-meetup.now.sh/events', config)
+        .then((response) => {
+          if(response.status === 200) {
+            this.setState({
+              events: response.data
+            })
+          }
+        })
   }
 
   private loadAttendees() {
@@ -45,11 +80,10 @@ class App extends React.Component<IAppProps, IAppState> {
             })
           }
         })
-    return;
   }
 
-  private onFilter = (attendeeFilter: string | null) => {
-    this.setState({attendeeFilter})
+  private onFilter = (attendeesFilter: string | null) => {
+    this.setState({attendeesFilter})
   }
 
   private onCardClick = (attendee: Attendee) => {
