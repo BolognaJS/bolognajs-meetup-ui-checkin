@@ -4,3 +4,11 @@ body {
   font-family: sans-serif;
 }
 
+.app {
+  width: 1024px;
+  padding: 10px;
+  margin: 20px auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
