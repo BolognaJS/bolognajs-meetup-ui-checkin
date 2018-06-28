@@ -3,10 +3,14 @@ import { ChangeEvent, Component } from 'react'
 
 import styled from 'styled-components';
 
+const SearchInput = styled.input`
+    padding: 10px;
+    margin-bottom: 20px;
+`
+
 interface IProps {
     threshold?: number,
-    onChange: (value: string | null) => void,
-    className?: string
+    onChange: (value: string | null) => void
 }
 interface IState {
     threshold: number,
@@ -25,7 +29,7 @@ class Search extends Component<IProps, IState> {
 
     public render() {
         return(
-            <input onChange={this.onChange} className={this.props.className}/>
+            <SearchInput onChange={this.onChange} />
         )
     }
 
@@ -39,8 +43,6 @@ class Search extends Component<IProps, IState> {
 }
 
 const StyledSearch = styled(Search)`
-    padding: 10px;
-    margin-bottom: 20px;
 `
 
 export default StyledSearch
