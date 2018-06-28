@@ -10,6 +10,7 @@ const SearchInput = styled.input`
 
 interface IProps {
     threshold?: number,
+    placeholder?: string,
     onChange: (value: string | null) => void
 }
 interface IState {
@@ -29,7 +30,7 @@ class Search extends Component<IProps, IState> {
 
     public render() {
         return(
-            <SearchInput onChange={this.onChange} />
+            <SearchInput onChange={this.onChange} placeholder={this.props.placeholder}/>
         )
     }
 
