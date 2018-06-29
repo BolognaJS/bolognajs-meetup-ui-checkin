@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled from "styled-components";
-import MeetupEvent from "../models/MeetupEvent";
+import * as React from "react"
+import styled from "styled-components"
 
+import MeetupEvent from "src/models/MeetupEvent"
 
 const CheckinTitle = styled.h1`
     text-align: center;

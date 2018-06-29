@@ -1,12 +1,14 @@
 import * as React from 'react'
-import { Component } from 'react';
+import { Component } from 'react'
 import axios, { AxiosRequestConfig } from 'axios'
 
-import MeetupEvent from 'src/models/MeetupEvent';
+import MeetupEvent from 'src/models/MeetupEvent'
 
-import AppContainer from 'src/components/AppContainer';
-import EventCard from 'src/components/EventCard';
-import Search from 'src/components/Search';
+import AppContainer from 'src/components/AppContainer'
+import EventCard from 'src/components/EventCard'
+import EventsHeader from 'src/components/EventsHeader';
+import Logo from 'src/components/Logo'
+import Search from 'src/components/Search'
 
 interface IProps {}
 interface IState {
@@ -29,6 +31,8 @@ class Events extends Component<IProps, IState> {
     public render() {
         return(
             <AppContainer>
+                <Logo />
+                <EventsHeader />
                 <Search onChange={this.onFilter} threshold={2} placeholder="Search events by name..." />
 
                 {
@@ -56,7 +60,7 @@ class Events extends Component<IProps, IState> {
                 })
               }
             })
-      }
+    }
     
     private onFilter = (eventsFilter: string | null) => {
         this.setState({eventsFilter})

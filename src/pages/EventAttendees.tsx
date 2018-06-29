@@ -7,9 +7,10 @@ import Attendee from 'src/models/Attendee'
 
 import AppContainer from 'src/components/AppContainer'
 import AttendeesPanel from 'src/components/AttendeesPanel'
+import CheckinHeader from 'src/components/CheckInHeader'
+import Logo from 'src/components/Logo'
+import MeetupEvent from 'src/models/MeetupEvent'
 import Search from 'src/components/Search'
-import MeetupEvent from 'src/models/MeetupEvent';
-import CheckinHeader from '../components/CheckInHeader';
 
 interface IRouteParameters {
     id: number
@@ -42,6 +43,7 @@ class EventAttendees extends Component<IProps, IState> {
     public render() {
         return (
             <AppContainer>
+                <Logo />
                 { this.state.event && <CheckinHeader event={this.state.event}/> }
                 <Search onChange={this.onFilter} threshold={2} placeholder="Search event attendee by name..." />
                 <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeesFilter} />
