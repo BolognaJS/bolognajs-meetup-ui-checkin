@@ -45,7 +45,7 @@ class EventAttendees extends Component<IProps, IState> {
             <AppContainer>
                 <Logo />
                 { this.state.event && <CheckinHeader event={this.state.event}/> }
-                <Search onChange={this.onFilter} threshold={2} placeholder="Search event attendee by name..." />
+                <Search onChange={this.onFilter} threshold={2} placeholder="Search event attendees by name..." />
                 <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeesFilter} />
             </AppContainer>
         )
