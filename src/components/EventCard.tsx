@@ -4,7 +4,7 @@ import styled from "styled-components"
 import MeetupEvent from 'src/models/MeetupEvent';
 import { Link } from "react-router-dom";
 
-const EventName = styled.h2`
+const EventName = styled.div`
     margin: 0 0 5px;
     font-size: 18px;
 `
@@ -71,7 +71,7 @@ const EventCard = ({event}: IEventCardProps) => {
             </EventCheckIns>
             <EventInfo>
                 <EventName>{event.name}</EventName>
-                <EventDateTime>{event.date} - {event.time}</EventDateTime>
+                <EventDateTime>{event.date}, {event.time}</EventDateTime>
             </EventInfo>
         </EventCardContainer>
     )

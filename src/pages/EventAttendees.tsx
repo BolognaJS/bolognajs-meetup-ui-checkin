@@ -8,6 +8,8 @@ import Attendee from 'src/models/Attendee'
 import AppContainer from 'src/components/AppContainer'
 import AttendeesPanel from 'src/components/AttendeesPanel'
 import Search from 'src/components/Search'
+import MeetupEvent from 'src/models/MeetupEvent';
+import CheckinHeader from '../components/CheckInHeader';
 
 interface IRouteParameters {
     id: number
@@ -19,7 +21,8 @@ interface IProps extends RouteComponentProps<any> {
 
 interface IState {
     attendees: Attendee[],
-    attendeesFilter: string | null
+    attendeesFilter: string | null,
+    event: MeetupEvent | null
 }
 
 class EventAttendees extends Component<IProps, IState> {
@@ -28,19 +31,44 @@ class EventAttendees extends Component<IProps, IState> {
 
         this.state = {
             attendees: [],
-            attendeesFilter: null
+            attendeesFilter: null,
+            event: null
         }
 
+        this.loadEventData(this.props.match.params.id)
         this.loadAttendees(this.props.match.params.id);
     }
 
     public render() {
         return (
             <AppContainer>
+                { this.state.event && <CheckinHeader event={this.state.event}/> }
                 <Search onChange={this.onFilter} threshold={2} placeholder="Search event attendee by name..." />
                 <AttendeesPanel members={this.state.attendees} onCardClick={this.onCardClick} filter={this.state.attendeesFilter} />
             </AppContainer>
         )
+    }
+
+    private loadEventData(id: number) {
+        const config: AxiosRequestConfig = {
+          headers: {'Access-Control-Allow-Origin': '*'}
+        };
+    
+        axios.get('https://bolognajs-meetup.now.sh/events', config)
+            .then((response) => {
+              if(response.status === 200) {
+                const events = response.data.filter( (e: MeetupEvent) => { 
+                    // tslint:disable-next-line:triple-equals
+                    return e.id == id 
+                })
+
+                if(events.length > 0) {
+                    this.setState({
+                        event: events[0]
+                    })      
+                }
+            }
+        })
     }
 
     private loadAttendees(eventId: number) {
@@ -58,20 +86,36 @@ class EventAttendees extends Component<IProps, IState> {
             })
     }
 
+    private doCheckIn(userId: number, eventId: number, checkin: boolean) {
+        const config: AxiosRequestConfig = {
+            headers: {'Access-Control-Allow-Origin': '*'}
+        };
+
+        const payload = {userId, eventId, checkin}
+
+        return axios.post(`https://bolognajs-meetup.now.sh/checkin`, payload, config)
+    }
+
     private onFilter = (attendeesFilter: string | null) => {
         this.setState({attendeesFilter})
     }
 
     private onCardClick = (attendee: Attendee) => {
-        this.setState( (state: IState) => {
-            const attendees = state.attendees
-                                   .filter( a => a.id !== attendee.id )
-                                   .concat( ({...attendee, checkin: !attendee.checkin}) )
-                                   .sort( this.compareAttendees )
+        this.doCheckIn(attendee.id, this.props.match.params.id, !attendee.checkin)
+            .then( response => {
+                if(response.status === 200) {
+                    this.setState( (state: IState) => {
+                        const attendees = state.attendees
+                                               .filter( a => a.id !== attendee.id )
+                                               .concat( ({...attendee, checkin: !attendee.checkin}) )
+                                               .sort( this.compareAttendees )
+                        
+                        const event = this.state.event ? {...this.state.event, checkedin: attendees.filter(a => a.checkin).length} : null
 
-            return {...state, attendees}
-            }
-        )
+                        return {...state, attendees, event}
+                    })            
+                }
+            })
     }
 
     private compareAttendees(a: Attendee, b: Attendee): number {
