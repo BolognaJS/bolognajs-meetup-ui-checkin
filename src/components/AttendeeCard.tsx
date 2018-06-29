@@ -12,6 +12,7 @@ interface IContainerProps {
 }
 
 const AttendeeCardContainer = styled.div`
+    width: calc(50% - 22px);
     padding: 5px 5px 0;
     position: relative;
     border: 1px solid #ccc;
@@ -20,6 +21,17 @@ const AttendeeCardContainer = styled.div`
     align-items: center;
     margin: 0 5px 10px;
     overflow: hidden;
+
+    @media (min-width: 763px) {
+        width: calc(33% - 20px);
+    }
+    @media (min-width: 1024px) {
+        width: calc(25% - 22px);
+    }
+    @media (min-width: 1100px) {
+        width: calc(20% - 22px);
+    }
+
 
     ${ 
         (props: IContainerProps) => props.checkedIn && css`

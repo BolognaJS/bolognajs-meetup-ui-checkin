@@ -21,7 +21,7 @@ const Avatar = ({url, className}: IProps) => (
 )
 
 const StyledAvatar = styled(Avatar)`
-    width: 200px;
+    width: 100%;
     height: 200px;
     overflow: hidden;
 `
