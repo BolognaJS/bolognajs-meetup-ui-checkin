@@ -23,7 +23,8 @@ const EventInfo = styled.div`
 const EventCheckIns = styled.button`
     position: relative;
     padding: 0;
-    margin-right: 10px;
+    height: 40px;
+    margin: 10px 10px 10px 0;
     background-color: #007bff;
     border: 1px solid #007bff;
     display: inline-block;
@@ -48,14 +49,23 @@ const EventCheckIns = styled.button`
         font-weight: 400;
         font-size: 15px;
     }
+
+    @media (min-width: 763px) {
+        margin: 0 10px 0 0;
+    }
 `
 
 const EventCardContainer = styled.div`
     flex: 1;
     display: flex;
+    flex-direction: column-reverse;
     padding: 0 10px;
     margin: 0 5px 15px;
     justify-content: flex-start;
+
+    @media (min-width: 763px) {
+        flex-direction: row;
+    }
 `
 
 interface IEventCardProps {
