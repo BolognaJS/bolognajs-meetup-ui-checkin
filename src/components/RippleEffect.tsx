@@ -62,7 +62,7 @@ const RippleEffect = styled.button`
     }
 
     &:focus:not(:active)::after  {
-        animation: ripple .7s linear;
+        animation: ripple .5s linear;
     }    
 
 `
