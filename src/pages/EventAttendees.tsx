@@ -13,7 +13,7 @@ import MeetupEvent from 'src/models/MeetupEvent'
 import Search from 'src/components/Search'
 
 interface IRouteParameters {
-    id: number
+    id: string
 }
 
 interface IProps extends RouteComponentProps<any> {
@@ -51,7 +51,7 @@ class EventAttendees extends Component<IProps, IState> {
         )
     }
 
-    private loadEventData(id: number) {
+    private loadEventData(id: string) {
         const config: AxiosRequestConfig = {
           headers: {'Access-Control-Allow-Origin': '*'}
         };
@@ -73,7 +73,7 @@ class EventAttendees extends Component<IProps, IState> {
         })
     }
 
-    private loadAttendees(eventId: number) {
+    private loadAttendees(eventId: string) {
         const config: AxiosRequestConfig = {
             headers: {'Access-Control-Allow-Origin': '*'}
         };
@@ -88,7 +88,7 @@ class EventAttendees extends Component<IProps, IState> {
             })
     }
 
-    private doCheckIn(userId: number, eventId: number, checkin: boolean) {
+    private doCheckIn(userId: number, eventId: string, checkin: boolean) {
         const config: AxiosRequestConfig = {
             headers: {'Access-Control-Allow-Origin': '*'}
         };
